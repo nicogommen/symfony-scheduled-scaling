@@ -32,7 +32,7 @@ applications:
                 passthru: "/index.php"
 
     mounts:
-        "/var": { source: shared, source_path: var }
+        "/var": { source: storage, source_path: var }
         
 
     relationships:
