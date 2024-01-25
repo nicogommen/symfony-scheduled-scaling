@@ -46,6 +46,9 @@ applications:
             
             NODE_VERSION=18 symfony-build
 
+            # install Upsun CLI
+            curl -fsSL https://raw.githubusercontent.com/platformsh/cli/main/installer.sh | VENDOR=upsun bash
+
         deploy: |
             set -x -e
 
