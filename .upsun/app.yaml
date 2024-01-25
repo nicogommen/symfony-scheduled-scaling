@@ -60,6 +60,18 @@ applications:
             # See https://github.com/fabpot/local-php-security-checker
             spec: '50 23 * * *'
             cmd: if [ "$PLATFORM_ENVIRONMENT_TYPE" = "production" ]; then croncape php-security-checker; fi
+        
+        upscale:
+            spec: '0 17 * * *'
+            commands: 
+                start: |
+                    upsun e:curl /deployments/next -X PATCH -d '{"webapps": {"app": {"instance_count": "3"}}}' 
+        
+        downscale:
+            spec: '30 17 * * *'
+            commands: 
+                start: |
+                    upsun e:curl /deployments/next -X PATCH -d '{"webapps": {"app": {"instance_count": "1"}}}' 
 
     workers:
         messenger:
